@@ -18,7 +18,7 @@ PKG_BUILD_PARALLEL:=1
 PKG_BUILD_DEPENDS:=openssl
 
 PKG_LICENSE:=GPL-3.0
-PKG_LICENSE_FILES:=LICENSE
+PKG_LICENSE_FILE:=LICENSE
 PKG_MAINTAINER:=GreaterFire
 
 include $(INCLUDE_DIR)/package.mk
@@ -66,4 +66,3 @@ define Package/trojan/install
 endef
 
 $(eval $(call BuildPackage,trojan))
-
