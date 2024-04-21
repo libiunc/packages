@@ -15,12 +15,11 @@ PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/wangyu-/tinyfecVPN.git
 PKG_SOURCE_DATE:=2021-01-17
 PKG_SOURCE_VERSION:=c9b98721ea1d62ab8e1c4c9e2a0ed04394dfe0ae
-PKG_MIRROR_HASH:=28cdadf0f162e52d3c6b10b6a6cdcd22e80783b36b33e341b5dea156bfb75b74
+PKG_MIRROR_HASH:=fca5dcb43bb8868d4cfa0121348c922841db94ce3480c043611fbbb5b7ec1809
 
 PKG_LICENSE:=MIT
 PKG_MAINTAINER:=Yu Wang
 
-PKG_CONFIG_DEPENDS:=CONFIG_USE_GLIBC
 PKG_BUILD_PARALLEL:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -31,7 +30,7 @@ define Package/tinyfecvpn
   SUBMENU:=VPN
   TITLE:=A Network Improving Tool
   URL:=https://github.com/wangyu-/tinyfecVPN
-  DEPENDS:=+libstdcpp +kmod-tun +USE_GLIBC:libatomic
+  DEPENDS:=+libstdcpp +kmod-tun
 endef
 
 define Package/tinyfecvpn/description
@@ -40,9 +39,6 @@ define Package/tinyfecvpn/description
 endef
 
 MAKE_FLAGS += nolimit_cross
-ifdef CONFIG_USE_GLIBC
-  TARGET_LDFLAGS+= -latomic
-endif
 
 define Build/Configure
 	sed -i 's/cc_cross=.*/cc_cross=$(TARGET_CXX)/g' $(PKG_BUILD_DIR)/makefile

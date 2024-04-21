@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ddns-go
-PKG_VERSION:=5.6.1
+PKG_VERSION:=6.3.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/jeessy2/ddns-go/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=bbdd92b79d427093e35c4c70c57e3b5d4773b854194268b7d68ec7ca6a57c3c7
+PKG_HASH:=7643dea28dfaae0923aa895797649c063c27cae4dbb1bfdecd5ede0ff68c9f0c
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
@@ -18,9 +18,9 @@ PKG_MAINTAINER:=Tianling Shen <cnsztl@immortalwrt.org>
 
 PKG_BUILD_DEPENDS:=golang/host
 PKG_BUILD_PARALLEL:=1
-PKG_USE_MIPS16:=0
+PKG_BUILD_FLAGS:=no-mips16
 
-GO_PKG:=github.com/jeessy2/ddns-go/v5
+GO_PKG:=github.com/jeessy2/ddns-go/v6
 GO_PKG_LDFLAGS_X:=main.version=$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk

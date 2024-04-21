@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=iputils
-PKG_VERSION:=20210202
+PKG_VERSION:=20240117
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/iputils/iputils/tar.gz/$(PKG_VERSION)?
-PKG_HASH:=3f557ecfd2ace873801231d2c1f42de73ced9fbc1ef3a438d847688b5fb0e8ab
+PKG_HASH:=a5d66e2997945b2541b8f780a7f5a5ec895d53a517ae1dc4f3ab762573edea9a
 PKG_BUILD_DIR:=$(BUILD_DIR)/iputils-$(PKG_VERSION)
 
 PKG_MAINTAINER:=Noah Meyerhans <frodo@morgul.net>
@@ -22,11 +22,8 @@ PKG_LICENSE:=BSD-3-Clause
 PKG_LICENSE_FILES:=LICENSE
 PKG_CPE_ID:=cpe:/a:iputils_project:iputils
 
-PKG_INSTALL:=1
-PKG_BUILD_DEPENDS:=meson/host
-
 include $(INCLUDE_DIR)/package.mk
-include ../../devel/meson/meson.mk
+include $(INCLUDE_DIR)/meson.mk
 
 MESON_ARGS += \
 	-DBUILD_MANS=false \
@@ -39,7 +36,7 @@ MESON_ARGS += \
 	-DBUILD_ARPING=true \
 	-DBUILD_CLOCKDIFF=true \
 	-DBUILD_TRACEPATH=true \
-	-DBUILD_TFTPD=true
+	-DSKIP_TESTS=true
 
 define Package/iputils/Default
   SECTION:=net
@@ -54,6 +51,7 @@ define Package/iputils-ping
   $(call Package/iputils/Default)
   TITLE:=iputils-ping
   DEPENDS:=+kmod-crypto-md5
+  PROVIDES:=iputils-ping6
 endef
 
 define Package/iputils-ping/config
@@ -129,24 +127,7 @@ ifdef CONFIG_TRACEPATH_LEGACY_SYMLINKS
 endif
 endef
 
-### tftp
-
-define Package/iputils-tftpd
-  $(call Package/iputils/Default)
-  TITLE:=iputils-tftpd
-endef
-
-define Package/iputils-tftpd/description
-  Trivial File Transfer Protocol server
-endef
-
-define Package/iputils-tftpd/install
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/tftpd $(1)/usr/sbin/
-endef
-
 $(eval $(call BuildPackage,iputils-ping))
 $(eval $(call BuildPackage,iputils-arping))
 $(eval $(call BuildPackage,iputils-clockdiff))
 $(eval $(call BuildPackage,iputils-tracepath))
-$(eval $(call BuildPackage,iputils-tftpd))

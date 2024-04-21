@@ -6,12 +6,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=UA2F
-PKG_VERSION:=4.4.1
+PKG_VERSION:=4.5.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/Zxilly/UA2F/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=985e71c8c820ea7b650a0b17d6b80526842866ee12a01c564657016c06facd2b
+PKG_HASH:=ba22e67ac6bdedb63cbcddd0cc2ac50545d9b731d86a79c824ba645d692afb8b
 
 PKG_LICENSE:=GPL-3.0-only
 PKG_LICENSE_FILES:=LICENSE
@@ -30,8 +30,8 @@ define Package/ua2f
   SUBMENU:=Routing and Redirection
   TITLE:=Change User-Agent to Fwords
   URL:=https://github.com/Zxilly/UA2F
-  DEPENDS:=+libuci +iptables-mod-conntrack-extra +iptables-mod-filter \
-    +iptables-mod-nfqueue +libnetfilter-conntrack +libnetfilter-queue
+  DEPENDS:=+libuci +libnetfilter-conntrack +libnetfilter-queue +kmod-nft-queue \
+    +USE_GLIBC:libasan
 endef
 
 define Package/ua2f/description

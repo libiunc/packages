@@ -16,6 +16,7 @@ PKG_LICENSE:=AGPL-3.0-only
 PKG_LICENSE_FILES:=LICENSE
 PKG_MAINTAINER:=pexcn <i@pexcn.me>
 
+PKG_BUILD_FLAGS:=lto
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
 
@@ -27,7 +28,6 @@ define Package/chinadns-ng
   SUBMENU:=IP Addresses and Names
   TITLE:=ChinaDNS next generation, refactoring with epoll and ipset.
   URL:=https://github.com/zfl9/chinadns-ng
-  DEPENDS:=+ipset
 endef
 
 define Package/chinadns-ng/install

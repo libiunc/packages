@@ -19,7 +19,6 @@ PKG_MAINTAINER:=Tianling Shen <cnsztl@immortalwrt.org>
 
 PKG_BUILD_DEPENDS:=golang/host
 PKG_BUILD_PARALLEL:=1
-PKG_USE_MIPS16:=0
 PKG_BUILD_FLAGS:=no-mips16
 
 GO_PKG:=github.com/v2rayA/v2rayA
@@ -28,7 +27,7 @@ GO_PKG_LDFLAGS_X:= \
 	$(GO_PKG)/core/iptables.TproxyNotSkipBr=true
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
+include ../../lang/golang/golang-package.mk
 
 TAR_OPTIONS+= --strip-components 1
 TAR_CMD=$(HOST_TAR) -C $(1)/.. $(TAR_OPTIONS)

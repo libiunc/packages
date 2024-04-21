@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 #
-# Copyright (C) 2021-2023 ImmortalWrt.org
+# Copyright (C) 2021 ImmortalWrt.org
 
 include $(TOPDIR)/rules.mk
 
@@ -18,14 +18,13 @@ PKG_LICENSE_FILES:=LICENSE
 
 PKG_BUILD_DEPENDS:=golang/host
 PKG_BUILD_PARALLEL:=1
-PKG_USE_MIPS16:=0
 PKG_BUILD_FLAGS:=no-mips16
 
 GO_PKG:=github.com/txthinking/brook
 GO_PKG_BUILD_PKG:=$(GO_PKG)/cli/brook
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
+include ../../lang/golang/golang-package.mk
 
 define Package/brook
   SECTION:=net
